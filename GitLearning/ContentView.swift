@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State private var showSheet = false
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -17,9 +19,17 @@ struct ContentView: View {
                 }, label: {
                     Text("Git Learning App")
                 })
-
+                Button (action: {
+                    showSheet = true
+                }, label: {
+                Text("Show sheet to true")
+                })
             }
             .padding()
+            .sheet(isPresented: $showSheet,
+                content: {
+                DetailView()
+            })
         }
     }
 }
